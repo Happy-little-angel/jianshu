@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { PureComponent } from 'react'
+import Header from './common/header'
+import {Provider} from 'react-redux'
+import store from './store'
+import {HashRouter as Router,Route} from 'react-router-dom'
+import Home from './pages/home'
+import Detial from './pages/detail'
+import Login from './pages/Login'
+import Write from './pages/write'
+export default class App extends PureComponent {
+  render() {
+    return (
+      <Provider store={store}>
+        <div>
+          <Router>
+            <Header/>
+            <Route path='/' exact component={Home}/>
+            <Route path='/detial' exact component={Detial}/> 
+            <Route path='/login' component={Login}/> 
+            <Route path='/write' component={Write}/>
+            
+          </Router>
+        </div>
+      </Provider>
+    )
+  }
 }
-
-export default App;
